@@ -38,7 +38,7 @@
 			    NickCrypt.exportProperty = function (owner, publicName, object) {
 			        owner[publicName] = object;
 			    };
-			    NickCrypt.version = "0.0.1";
+			    NickCrypt.version = "0.0.3";
 
 			    NickCrypt.exportSymbol('version', NickCrypt.version);
 				 
@@ -56,6 +56,18 @@
 						});
 					 
 			        return  encrypted.toString();
+					 
+					/* var key = CryptoJS.enc.Utf8.parse(password);
+					var iv = CryptoJS.enc.Utf8.parse(salt);
+					var encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(data), key,
+						{
+							keySize: 128 / 8,
+							iv: iv,
+							mode: CryptoJS.mode.CBC,
+							padding: CryptoJS.pad.Pkcs7
+						});
+					 
+			        return encrypted.toString(); */
 			    });
 				
 				NickCrypt.Decrypt = (function (data, password, salt) {
@@ -73,6 +85,18 @@
 					 var dec =  decrypted.toString(CryptoJS.enc.Utf8);
 					 
 					 return LZString.decompressFromEncodedURIComponent(dec);
+					 
+					/* var key = CryptoJS.enc.Utf8.parse(password);
+					var iv = CryptoJS.enc.Utf8.parse(salt);
+					
+			          var decrypted = CryptoJS.AES.decrypt(data, key, {
+						keySize: 128 / 8,
+						iv: iv,
+						mode: CryptoJS.mode.CBC,
+						padding: CryptoJS.pad.Pkcs7
+					});
+					
+					return  decrypted.toString(CryptoJS.enc.Utf8); */
 			    }); 
 			}))
 	}())
